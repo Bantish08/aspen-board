@@ -1,0 +1,19 @@
+// @import "styles-variables";
+
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.col-50 {
+    float: left;
+    width: 50%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}

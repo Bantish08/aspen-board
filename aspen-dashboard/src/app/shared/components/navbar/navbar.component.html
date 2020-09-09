@@ -1,0 +1,81 @@
+<mat-toolbar>
+  <div class="mcb-appLogo">
+    <img src="assets/images/img-mcb-logo.svg" />
+  </div>
+  <div class="mcb-appName">BPM</div>
+  <div class="mcb-navbarItems">
+    <div class="mcb-navbarMenu">
+      <button mat-button matTooltip="Dashboard" routerLink="dashboard" routerLinkActive="active"
+        class="mcb-navbarMenuButton">
+        <mat-icon>dashboard</mat-icon>
+      </button>
+    </div>
+    <div class="mcb-navbarMenu">
+      <button mat-button #startProcessTrigger="matMenuTrigger" [matMenuTriggerFor]="startProcess"
+        class="mcb-navbarMenuButton">Start Process
+        <mat-icon>
+          {{startProcessTrigger.menuOpen ? 'expand_less' : 'expand_more'}}
+        </mat-icon>
+      </button>
+      <mat-menu #startProcess="matMenu" class="mcb-navbarMenuItem">
+        <!-- <button mat-menu-item >Energy & Commodities</button>
+          <button mat-menu-item routerLink="ucpr-process" routerLinkActive="mcb-active">Urgent Pin Card Request</button> -->
+
+        <div *ngFor="let val of processListArr">
+          <button mat-menu-item (click)="navigate(val,'process')">{{val.processDescription}}</button>
+        </div>
+        <!-- <button mat-menu-item (click)="navigate('as','instakit-process')" routerLinkActive="active">Instakit</button> -->
+      </mat-menu>
+    </div>
+    <div class="mcb-navbarMenu">
+      <button mat-button #myTaskTrigger="matMenuTrigger" [matMenuTriggerFor]="myTask" class="mcb-navbarMenuButton">My
+        Tasks
+        <mat-icon>
+          {{myTaskTrigger.menuOpen ? 'expand_less' : 'expand_more'}}
+        </mat-icon>
+      </button>
+      <mat-menu #myTask="matMenu" class="mcb-navbarMenuItem">
+        <!-- <button mat-menu-item >Energy & Commodities</button>
+          <button mat-menu-item routerLink="ucpr-tasks" routerLinkActive="active">Urgent Pin Card Request</button> -->
+        <div *ngFor="let val of taskListArr">
+          <button mat-menu-item (click)="navigate(val,'tasks')">{{val.processDescription}}</button>
+        </div>
+      </mat-menu>
+    </div>
+    <div class="mcb-navbarMenu">
+      <button mat-button #myReportsTrigger="matMenuTrigger" [matMenuTriggerFor]="myReport"
+        class="mcb-navbarMenuButton">My Reports
+        <mat-icon>
+          {{myReportsTrigger.menuOpen ? 'expand_less' : 'expand_more'}}
+        </mat-icon>
+      </button>
+      <mat-menu #myReport="matMenu" class="mcb-navbarMenuItem">
+        <!-- <button mat-menu-item >Energy & Commodities</button>
+          <button mat-menu-item routerLink="ucpr-repor.ts" routerLinkActive="active">Urgent Pin Card Request</button> -->
+        <div *ngFor="let val of reportListArr">
+          <button mat-menu-item (click)="navigate(val,'reports')">{{val.processDescription}}</button>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="mcb-navbarIcon">
+    <button mat-icon-button matTooltip="Notifcation">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Help">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="myProfile" matTooltip="Profile">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #myProfile="matMenu">
+      <div *ngIf="isAdmin">
+        <button mat-menu-item (click)="navigate({processShortName:'administrator'},'admin')">Settings</button>
+      </div>
+    </mat-menu>
+    <button mat-icon-button (click)="logout()" matTooltip="Logout">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+    <label style="font-size: 14px !important;">{{userName}}</label>
+  </div>
+</mat-toolbar>
