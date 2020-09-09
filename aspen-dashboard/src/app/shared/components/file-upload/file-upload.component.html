@@ -1,0 +1,76 @@
+<!-- <input #selectedFile type="file" ng2FileSelect [uploader]="uploader" multiple /><br /> -->
+<div class="upload-btn-wrapper" *ngIf="uploadFile ">
+  <button mat-raised-button >Upload Documents</button>
+  <mat-label mat-raised-button class="hint-txt">(Max File Size : 10mb)</mat-label>
+  <input #selectedFile type="file" ng2FileSelect [disabled]="isReadOnly" [uploader]="uploader" multiple />
+</div>
+<mat-icon matTooltip="Allowed file extensions are : png,jpg, jpeg, pdf, doc,bmp,html,gif,rtf,tif,tiff,txt,xlsx,xls,ppt"
+   class="warning-info">warning</mat-icon>
+
+<!-- *ngIf="uploader.queue.length > 0" -->
+<form [formGroup]='formName'>
+  <div formArrayName="controllerArray">
+    <table class="mcb-table" *ngIf="uploader.queue.length > 0 || (uploaderFromApi && uploaderFromApi.length > 0 )">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Sub Type</th>
+          <!-- *ngIf="(docSubTypeArr.length > 0 || docSubTypeArr2.length > 0 || uploaderFromApi.length > 0)" -->
+          <th *ngIf="isActive">
+            Type
+          </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let control of fileList.controls; let i = index;" [formGroupName]="i">
+          <td>{{ uploader?.queue[i]?.file?.name }}</td>
+          <td>
+            <div class="example-form">
+              <input class="inputAutocomplete test2"  formControlName="subtype" input-autocomplete [config]="config2" [items]="docTypeArr"
+                (selectEvent)="onSelect($event,i)">
+               <!-- <mat-icon mat-suffix (click)="clearInput(i)" class="uploadSecClearIcon">backspace</mat-icon> -->
+            </div>
+          </td>
+          <!-- *ngIf="(docSubTypeArr.length > 0 || docSubTypeArr2.length > 0)"> -->
+          <td *ngIf="isActive" >
+          <!-- [ngClass]="{'doc1' : ( docSubTypeArr.length === 1 ) , 'doc2' : (docSubTypeArr2) }" -->
+            <input  class="inputAutocomplete test2" [ngClass]="{'noClick' : !( docSubTypeArr2.length >  1)}"
+               formControlName="controlerInputName1"
+            input-autocomplete [config]="config3" [items]="(docSubTypeArr.length === 1 ? docSubTypeArr : docSubTypeArr2)"
+             (selectEvent)="getDocSubTypeVal($event,i)">
+             <button mat-button matTooltip="clear" class="mcb-navbarMenuButton">
+              <!-- <mat-icon>backspace</mat-icon> -->
+            </button>
+          </td>
+          <td>
+            <button mat-icon-button matTooltip="delete">
+              <mat-icon (click)="removeFile(uploader?.queue[i],i)">delete_forever</mat-icon>
+            </button>
+          </td>
+          <td nowrap>
+          </td>
+        </tr>
+      </tbody>
+
+
+      <!-- // this is coming from api -->
+      <tbody *ngIf="uploaderFromApi">
+        <tr *ngFor="let item of uploaderFromApi;let i = index">
+          <td>{{ item?.fileName }}</td>
+          <td>{{item?.docSubType}}</td>
+          <td> {{item?.docType}} </td>
+
+          <td>
+            <button mat-icon-button matTooltip="download">
+              <mat-icon (click)="downloadFile(item,i)">cloud_download</mat-icon>
+            </button>
+          </td>
+          <td nowrap>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
