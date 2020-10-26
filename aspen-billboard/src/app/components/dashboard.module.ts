@@ -1,3 +1,4 @@
+import { GaugesModule } from '@biacsics/ng-canvas-gauges';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,7 +16,8 @@ import { ChartsModule } from 'ng2-charts';
     DashboardRoutingModule,
     MatSliderModule,
     MaterialDesignModule,
-    ChartsModule
+    ChartsModule,
+    GaugesModule
   ],
   exports: [],
   providers: []

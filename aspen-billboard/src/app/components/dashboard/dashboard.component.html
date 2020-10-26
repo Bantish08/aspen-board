@@ -1,43 +1,33 @@
 <!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
 <div class="container">
-  <div class="row text-center" style="background-color: blue; height: 25%;">
+  <div class="row text-center" style="background-color: rgb(255, 255, 255); height: 25%;">
     <div class="col">
     </div>
-    <marquee style="color: #ffffff;">This is basic example of marquee</marquee>
+    <marquee style="color: #000000;">This is basic example of marquee</marquee>
   </div>
   <div class="row" style="height: 75%;">
     <div class="col-50">
-      <div class="row" style="background-color:darkgrey; width: 100%; height: 50%; margin-left: 0px;">
+      <div class="row" style="background-color:ffffff; width: 100%; height: 50%; margin-left: 0px;">
         <div class="chart-wrapper" style="width: 100%; height: 50%; margin-left: 0px;">
           <canvas baseChart
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [colors]="lineChartColors"
-            [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-            [plugins]="lineChartPlugins">
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType">
           </canvas>
         </div>
       </div>
-      <div class="row" style="background-color:darkgoldenrod; width: 100%; height: 50%; margin-left: 0px;">
+      <div class="row" style="background-color:ffffff; width: 100%; height: 50%; margin-left: 0px;">
         <div class="chart-wrapper" style="width: 100%; height: 50%; margin-left: 0px;">
-          <canvas baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [colors]="barChartColors"
-          [plugins]="barChartPlugins"
-          [legend]="barChartLegend"
-          [chartType]="barChartType">
-        </canvas>
-      </div>
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [colors]="barChartColors" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+        </div>
       </div>
     </div>
     <div class="col-50" style="background-color:#ffffff;">
       <div class="row h-100">
-        <div class="col-sm-12 my-auto">
-          <p class="text-center align-middle">3,590 Days Saved</p>
+        <div class="col-sm-12 block">
+          <linear-gauge width="150" height="550"></linear-gauge>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { Color, Label, MultiDataSet } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   barChartColors: Color[] = [
     {
       borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
+      backgroundColor: '#ff6666',
     }
   ];
   barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
@@ -41,7 +41,17 @@ export class DashboardComponent implements OnInit {
     { data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits' }
   ];
   // END BAR CHART//
-  constructor() { }
+
+  // START PIE CHART//
+  doughnutChartOptions: ChartOptions =  {responsive: true};
+  doughnutChartLabels: Label[] = ['BMW', 'Ford', 'Tesla'];
+  doughnutChartData: MultiDataSet = [[55, 25, 20]];
+  doughnutChartLegend = true;
+  doughnutChartType: ChartType = 'pie';
+  // END PIE CHART//
+
+  constructor() {
+   }
 
   ngOnInit(): void {
   }
